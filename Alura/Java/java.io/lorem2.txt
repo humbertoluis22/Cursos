@@ -1,0 +1,3 @@
+codigo mais avançado e elegante
+
+usando outra classe, agr a PrintStream

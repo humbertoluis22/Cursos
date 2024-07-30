@@ -1,0 +1,1 @@
+mais coisas para o teste, dessa vez saindo do laço q antes era infinito com o metodo .isEmpty()
