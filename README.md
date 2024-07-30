@@ -5,8 +5,8 @@ Este repositório contém informações sobre os cursos de programação que con
 ## Linguagens de Programação
 
 ### C#
-- **Curso**: [Aprenda a programar em C# com Orientação a Objetos]
-- **Instituição**: [Alura]
+- **Curso**: Aprenda a programar em C# com Orientação a Objetos
+- **Instituição**: Alura
 - **Descrição**: Este curso cobre os fundamentos de programação em C#, incluindo sintaxe, controle de fluxo, manipulação de dados e orientação a objetos.
 - **Conteúdo**:
   - C#: criando sua primeira aplicação
@@ -17,8 +17,8 @@ Este repositório contém informações sobre os cursos de programação que con
   - C#: Trabalhando com Arrays e Coleçõe
 
 ### Java
-- **Curso**: [Aprenda a programar em Java com Orientação a Objetos]
-- **Instituição**: [Alura]
+- **Curso**: Aprenda a programar em Java com Orientação a Objetos
+- **Instituição**: Alura
 - **Descrição**: Este curso aborda a programação em Java, com foco em conceitos de orientação a objetos, estruturas de dados.
 - **Conteúdo**:
   - Java JRE e JDK: compile e execute o seu programa
@@ -34,8 +34,8 @@ Este repositório contém informações sobre os cursos de programação que con
 
 
 ### PHP
-- **Curso**: [Aprenda a programar em PHP]
-- **Instituição**: [Alura]
+- **Curso**: Aprenda a programar em PHP
+- **Instituição**: Alura
 - **Descrição**: Curso de PHP com foco em BackEnd com POO
 - **Conteúdo**:
   - PHP: conceitos, lidando com dados, loops e mais
@@ -48,8 +48,8 @@ Este repositório contém informações sobre os cursos de programação que con
   - PHP Exceptions: tratamento de erros
 
 ### Python
-- **Curso**: [Aprenda a programar em Python com Orientação a Objetos]
-- **Instituição**: [Alura]
+- **Curso**: Aprenda a programar em Python com Orientação a Objetos
+- **Instituição**: Alura
 - **Descrição**: Curso de Python focado em programação básica e intermediaria com foco no POO
 - **Conteúdo**:
   - Python: começando com a linguagem
@@ -63,8 +63,8 @@ Este repositório contém informações sobre os cursos de programação que con
   - Python e TDD: explorando testes unitários
 
 ### HTML & CSS
-- **Curso**: [Pratique HTML e CSS em projetos Web]
-- **Instituição**: [Alura]
+- **Curso**: Pratique HTML e CSS em projetos Web
+- **Instituição**: Alura
 - **Descrição**: Este curso ensina a construção de sites estáticos utilizando HTML e CSS, abordando conceitos de design responsivo e melhores práticas de desenvolvimento web.
 - **Conteúdo**:
   - HTML5 e CSS3 parte 1: crie uma página da Web
@@ -76,5 +76,5 @@ Este repositório contém informações sobre os cursos de programação que con
   - Melhores práticas
 
 ## Contato
-- **E-mail**: [humbertoluis2013.gmail.com]
-- **LinkedIn**: [linkedin.com/in/humberto-nogueira-36501a21b]
+- **E-mail**: humbertoluis2013.gmail.com
+- **LinkedIn**: linkedin.com/in/humberto-nogueira-36501a21b
