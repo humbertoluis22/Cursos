@@ -1,0 +1,39 @@
+00:00] Criamos o banco de dados através do script “prepara_banco”. Só que o banco de dados ainda não se comunica com a nossa aplicação. Os dois ainda não estão conectados. Para conectá-los, vamos utilizar um ORM Object-Relational Mapping.
+
+[00:17] E aquele que escolhemos para utilizar é o SQL Alchemy. O SQL Alchemy é um ORM. E o que vai acontecer por baixo dos panos é que o SQL Alchemy vai buscar os objetos que utilizamos na nossa aplicação da orientação a objetos da linguagem Python e vai traduzir esses objetos para objetos de bancos de dados.
+
+[00:40] Então, é isso que o SQL Alchemy e um ORM fazem. Eles fazem a tradução de informações da nossa linguagem de programação para informações do banco de dados. Só que ele não faz meramente uma tradução, ele não é meramente um tradutor. Ele também nos oferece um kit completo de ferramentas que podemos utilizar na nossa interação com o banco de dados.
+
+[01:01] Então tem várias vantagens em utilizarmos um ORM. Vou deixar mais informações sobre ORMs no Para Saber Mais dessa aula. Vamos alterar o nosso código e realmente fazer essa conexão com o banco de dados. A primeira coisa que temos que fazer é instalar o SQL Alchemy. Vou no terminal da aplicação e abrir.
+
+[01:22] O que vou fazer é instalar com o pip, pip install flask -sqlalchemy==2.5.1. É só dar um "Enter" e o pip vai instalar para nós. Já instalou. E agora no código, vou no jogoteca.py e importar o SQL Alchemy. Vou colocar, from flask_sqlalchemy_import SQLAlchemy. Estou fazendo a importação do SQL Alchemy.
+
+[02:10] O que precisamos fazer agora é instanciar esse objeto de banco de dados que o SQL Alchemy nos dá. Vamos fazer essa instanciação logo depois da instanciação da nossa própria aplicação Flask. Vou colocar, db = SQLAlchemy e dentro como argumento vou passar a nossa própria aplicação Flask. Então vai ficar, db = SQLAlchemy(app).
+
+[02:40] Aqui estamos instanciando esse banco de dados do próprio SQL Alchemy que vai fazer a ponte do nosso banco de dados real. E aqui já passei como argumento a aplicação Flask. Então o SQL Alchemy já está conectado com a nossa aplicação. Mas ainda falta conectar com o nosso banco de dados. Para fazer essa conexão com o nosso banco de dados, o que vamos fazer é criar uma nova variável dentro das configurações da nossa aplicação.
+
+[03:04] Então vou colocar, app.config['SQLAlchemy_DATABASE_uri']. Dentro dos colchetes coloquei o nome da variável que tem que ser em letra maiúscula. E é de fato uma uri. Vamos passar um endereço com as configurações do nosso banco de dados e o SQL Alchemy vai entender e fazer a conexão. Vou colocar um igual e uma barra invertida, app.config['SQLALCHEMY_DATABASE_URI'] = \, e dar um "Enter". O Python permite que façamos isso.
+
+[03:43] Então se colocarmos uma barra invertida logo depois do igual, podemos colocar as informações na linha de baixo. E quero fazer isso para manter as coisas um pouco organizadas. E pegando da própria documentação do SQL Alchemy, vamos utilizar esse tipo de String. Primeiro vou colocar tudo isso em String. É uma String.
+
+[04:04] Temos que colocar as informações no banco de dados dessa forma que está distribuída aqui. Então vamos no “prepara_banco” e vamos comparar as informações entre os dois. Então vou reorganizar a tela. Vou colocar o “prepara_banco” do lado direito e vamos pegando as informações do “prepara_banco” e vamos inserindo nessa url.
+
+[04:31] Então tenho ela. Dá para visualizar legal. E vou utilizar o método de format. Vou colocar, format(), entre parênteses e dar um "Enter". Vou colocar SGBD entre chaves, usuário entre chaves, a senha entre chaves, servidor entre chaves e database entre chaves também. E tudo o que eu preciso fazer é vir embaixo e colocar todas as variáveis que criei para essa função format.
+
+[05:10] Então vou colocar, ( SGBD = , Sistema Gerenciador de Banco de Dados. Vou colocar qual é o nosso. Estamos utilizando o MySQL. Então temos que colocar,( SGBD = 'mysql'. Só que não podemos colocar só o nosso sistema, precisamos colocar também o conector que estamos utilizando.
+
+[05:31] Temos que colocar, ( SGBD = 'mysql+mysqlconnector'. Vou colocar vírgula e vou para o próximo que é o usuário. No meu caso estou utilizando, como vocês podem ver, o usuário root. Então vamos colocar como uma String também ( SGBD = 'mysql+mysqlconnector', usuario = 'root',. Vou colocar vírgula. A próxima é a senha que como ali já diz é admin, ( SGBD = 'mysql+mysqlconnector', usuario = 'root', senha = 'admin'.
+
+[06:05] Em seguida, temos o servidor que no nosso caso é o localhost 127.0.0.1. Posso colocar simplesmente, ( SGBD = 'mysql+mysqlconnector', usuario = 'root', senha = 'admin', servidor = 'localhost’,. Também vai dar certo. Em seguida, temos o nome do banco de dados que fizemos sendo jogoteca. Então vamos colocar:
+
+(
+SGBD = 'mysql+mysqlconnector',
+usuario = 'root',
+senha = 'admin',
+servidor = 'localhost',
+database = 'jogoteca'
+)
+Copiar código
+[06:50] Pronto. Então temos a uri que vai fazer a conexão com o banco de dados. Organizada dessa forma com o format, já fica de cara para vermos todas as informações que estamos fornecendo na uri.
+
+[07:12] E uma das vantagens de usar um ORM, caso no futuro queiramos mudar de sistema gerenciador de banco de dados, do MySQL para o Postgre, por exemplo, podemos simplesmente mudar essa String e o restante vai se manter o mesmo. Então essa é uma vantagem bem interessante.

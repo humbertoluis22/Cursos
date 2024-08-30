@@ -1,0 +1,37 @@
+Ambos os métodos internos __str__ e __repr__ são muito utilizados para a construção de classes na linguagem Python.
+
+Esses métodos tem como objetivo apresentar uma representação da classe para públicos diferentes. Enquanto o __str__ tem como foco o usuário final daquela classe, o método __repr__ tem como objetivo mostrar uma versão em string para a pessoa programadora quando a classe é acessada em modo interativo.
+
+Exemplo de classe com __repr__:
+
+In [1]: class Spam:
+   ...:     def __init__(self, embalagem, sabor):
+   ...:         self.embalagem = embalagem
+   ...:         self.sabor = sabor
+   ...:     
+   ...:     def __repr__(self):
+   ...:         return '<sabor %r>' % self.sabor
+   ...: Copiar código
+Teste:
+
+In [2]: tin_can = Spam('metal', 'Ruim')
+In [3]: tin_can
+
+Out[3]: <sabor 'Ruim'>Copiar código
+Exemplo de classe com __str__:
+
+In [1]: class Spam:
+   ...:     def __init__(self, embalagem, sabor):
+   ...:         self.embalagem = embalagem
+   ...:         self.sabor = sabor
+   ...:     
+   ...:     def __str__(self):
+   ...:         return '<sabor %r>' % self.sabor
+   ...: 
+Copiar código
+Teste:
+
+In [2]: tin_can = Spam('metal', 'Ruim')
+In [3]: tin_can
+
+Out[3]: <__main__.Spam at 0x7f170224fb80>

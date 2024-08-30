@@ -1,0 +1,35 @@
+[00:00] A nossa aplicação já está ficando um pouco mais robusta. Ao mesmo tempo em que há pontos positivos também há pontos negativos. E um ponto negativo é que a nossa aplicação começou a ficar muito extensa. Só temos ela dentro de um único arquivo, que é o jogoteca.py.
+
+[00:17] No último vídeo já enfrentei alguns problemas com isso. Queria mostrar uma coisa para vocês e acabava descendo no código e depois tinha que voltar e rolar para cima de volta e está meio que tudo misturado.
+
+[00:29] Vamos reestruturar o nosso código e reorganizar um pouco as coisas. O que vou fazer primeiramente é deslocar esses dois models que temos que criamos para fazer a ponte com as tabelas no banco de dados. Então vou retirar eles e criar um arquivo próprio no projeto. Vou recortar eles daqui e criar um arquivo que vou dar o nome de "models".
+
+[01:01] Aqui vou colar eles. A nossa própria IDE já indica para nós que tem algum problema acontecendo. Então ele precisa do meu db que é a instanciação do SQL Alchemy. Ele precisa que importemos ele para dentro para que esse arquivo funcione. E é isso que vamos fazer. Vou colocar, from jogoteca import db. E pronto. A princípio isso já vai bastar para funcionar o models.
+
+[01:32] O models já criamos e já limpou um pouvo o jogoteca.py. Só que ainda tem mais coisas que podemos melhorar. As rotas ocupam um grande espaço no jogoteca.py. Então vamos realocá-las e colocar em um lugar feito só para elas. Vou retirar todas as nossas rotas daqui e deixar só as instanciações da nossa aplicação e do SQL Alchemy presente no jogoteca.py.
+
+[02:05] Vou recortar. Vou criar uma pasta que vou dar o nome de "views.py" que é um nome padronizado. E vou colocar as nossas múltiplas rotas. Muitas rotas. A nossa ideia também indica que esse arquivo está quebrado. Então está faltando algumas importações. Vamos dar uma olhada em quais importações precisamos fazer.
+
+[02:31] Se voltarmos no jogoteca.py, a nossa ideia indica que existem algumas bibliotecas como render template, request, redirect, session, flash e o url for que realmente só utilizamos elas nas rotas. O que vou fazer é dar um "Ctrl + C" nesse import gigantesco que temos no jogoteca.py e vou colocar ele nas views.py. Está aqui o Flask. O import da função instanciadora do Flask não vamos precisar. Só vamos precisar desse segmento.
+
+[03:05] Mas existem algumas coisas que ainda estão quebradas. Por exemplo, o fato de não termos a nossa própria aplicação, o app. Então vamos fazer um import da nossa aplicação. É, from jogoteca import app. E também precisamos fazer o import dos nossos models. Vou colocar logo abaixo, from models import Jogos, Usuarios. Então vamos dar uma olhada para ver se tem mais alguma coisa faltando.
+
+[03:51] Na verdade, ainda está faltando. Está faltando o db. Então quem está acessando do SQL Alchemy. Vou vir juntamente com o import do app também vou colocar db, from jogoteca import app, db. Então aqui as importações já deram todas certas. Vou voltar para o “jogoteca.py” e eliminar o que não é mais necessário nas nossas importações.
+
+[04:12] Então se dermos uma olhada no jogoteca.py já reduzimos e muito o que temos. Só que ainda podemos reduzir um pouco mais porque tem questões que não são puramente as instanciações das nossas aplicações. Tem coisas que são configuração da nossa aplicação, como esse segmento que criamos variável da uri para se conectar com o banco de dados.
+
+[04:37] E a própria secret key que também é uma configuração. Não deixa de ser uma configuração da nossa aplicação. Será que não tem como fazermos um arquivo só de configurações? Tem, sim. Então vamos criar um arquivo Python que vou chamar de config.py. E dentro desse arquivo vou passar essas informações todas, inclusive, a secret key.
+
+[05:05] Então vou dar um recorte nessas informações e passar no config.py. Só que diferente dos nossos outros arquivos, vou precisar fazer algumas mudanças. Então as mudanças que vou fazer vão ser as seguintes. Em vez de deixar app.secret_key, posso simplesmente criar uma variável universal em letra maiúscula, com o Caps Lock ativado. Vou chamar de SECRET_KEY = 'alura'.
+
+[05:43] E no caso dessa configuração que vou fazer, vai ser criar uma variável universal também com o nome de SQLALCHEMY_DATABASE_URI que vai conter todas essas informações. E quando eu voltar no jogoteca.py, o que vou precisar fazer vai ser basicamente colocar, app.config.from_pyfile(). Então a nossa própria aplicação Flask dá dentro das configurações a opção de puxarmos as configurações de dentro de um arquivo Python.
+
+[06:22] Então é por isso que quis definir como variáveis universais. E aqui só passo para dentro desse from pyfile o nome do arquivo que é app.config.from_pyfile('config.py'). Está quase pronto. Quase já podemos colocar para rodar, com exceção que está faltando um detalhe que seria vir aqui embaixo e colocar, if __name__ == '__main__' sempre colocando o underline underline, o Dunder.
+
+[07:06] Vou passar o run da application dentro do if. Isso vai garantir que toda vez que eu coloquei isso para rodar, que rode mesmo fazendo todas essas importações múltiplas que estamos fazendo de dentro da nossa aplicação. Então já é para tudo funcionar. Vamos ver se realmente vai funcionar. Vou dar um Run na jogoteca.py. A princípio ele funcionou aqui embaixo. Vamos acessar a página e olha o que aconteceu.
+
+[07:39] Deu Not Found. Então tem alguma coisa errada acontecendo. De fato, se eu vier na aplicação, o que está acontecendo é que a aplicação não está fazendo o import das views, das rotas. Então antes mesmo de eu fazer o Run da aplicação, preciso colocar, from views import *. Vou passar esse asterisco que significa tudo. Quero fazer a importação de todas as minhas rotas. Então, se eu colocar isso para rodar novamente, ele já estava rodando na verdade, é só dar um Rerun e a nossa aplicação voltou a funcionar.
+
+[08:24] Então fizemos uma super reorganização do código, mas que ficou muito mais limpo. Então o jogoteca.py passou a ser apenas uma página de execução, de instanciação das nossas aplicações. Existe uma página de configuração da nossa aplicação. Existe uma página onde colocamos todas as rotas e é onde vamos trabalhar mais majoritariamente a partir de agora.
+
+[08:45] E existe uma página de models.py que é onde vamos colocar as tabelas que formos precisando adicionar dentro da aplicação. Então isso é bem interessante e agora a coisa toda vai ficar um pouco mais organizada. Vejo vocês no próximo vídeo.
