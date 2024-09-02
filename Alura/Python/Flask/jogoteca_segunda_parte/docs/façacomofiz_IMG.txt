@@ -1,0 +1,118 @@
+Confira o andamento do seu projeto de acordo com o que foi instruído:
+
+1) Adicionar mais uma pasta no projeto chamada uploads e inserir o arquivo de imagem que pode ser encontrado nesse link com o nome de capa_padrao.jpg
+
+2) Alterar a tag form de novo.html para incluir o enctype:
+
+<form action="{{ url_for('criar') }}" method="post" enctype="multipart/form-data">Copiar código
+3) Alterar o arquivo novo.html para incluir o seguinte trecho de código de inclusão de input de imagem e exibição da capa_padrao.jpg:
+
+{% extends "template.html" %}
+{% block conteudo %}
+      <form action="{{ url_for('criar') }}" method="post" enctype="multipart/form-data">
+
+        <figure class="img thumbnail col-md-4">
+          <img class="img-fluid" src="{{ url_for('imagem', nome_arquivo='capa_padrao.jpg') }}">
+          <figcaption>
+            <label class="fileContainer">
+              Mudar Capa
+              <input type="file" name="arquivo" accept=".jpg">
+            </label>
+          </figcaption>
+        </figure>
+
+        <fieldset>
+          <div class="form-group">
+  …..Copiar código
+4) Incluir um novo arquivo de folha de estilos dentro da pasta static com o nome app.css e inserir o seguinte código:
+
+body {
+    padding-top: 10px;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+.container {
+    border-radius: 4px;
+    margin: auto;
+    width: 80%;
+}
+
+.little-container {
+    width: 40%;
+    margin: auto;
+}
+
+figcaption {
+    text-align: center;
+    margin: 3px auto;
+}
+
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+.fileContainer [type=file] {
+    cursor: pointer;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+td {
+    text-align: center;
+}
+
+.formularioJogo {
+    display: flex;
+}
+
+.formularioImagem {
+    margin-right: 16px
+}
+
+.buttons {
+    margin-top: 16px
+}
+
+.inputBox {
+    width: 700px;
+}
+
+.inputsJogo {
+    width: 100%;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}Copiar código
+5) Inserir o novo stylesheet de app.css no arquivo de template.html:
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Jogoteca</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    </head>
+    <body>
+        <div class="container">
+……Copiar código
+6) Fazer o import da função send_from_directory do Flask no views.py:
+
+from flask import render_template, request, redirect, session, flash, url_for, send_from_directoryCopiar código
+7) Criar uma nova rota em views.py chamada imagem:
+
+@app.route('/uploads/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads', no

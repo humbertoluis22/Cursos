@@ -1,7 +1,9 @@
 
-from flask import  render_template, request, redirect, session, flash, url_for
+from flask import  render_template, request, redirect, session, flash, url_for,send_from_directory
 from jogoteca import app,db
 from models import *
+from helpers import * 
+import time
 
 @app.route('/')
 def index():
@@ -21,7 +23,8 @@ def editar(id):
         return redirect(url_for('login', proxima= url_for('index')))
     
     jogo = Jogos.query.filter_by(id=id).first()
-    return render_template('editar.html',titulo= 'Editando Jogo',jogo= jogo)
+    capa_jogo = recupera_imagem(id=id)
+    return render_template('editar.html',titulo= 'Editando Jogo',jogo= jogo, capa_jogo = capa_jogo)
 
 
 @app.route('/deletar/<int:id>')
@@ -45,6 +48,12 @@ def atualizar():
     db.session.add(jogo)
     db.session.commit()
 
+    arquivo = request.files['arquivo']
+    upload_arquivo = app.config['UPLOAD_PATH']
+    timestamp = time.time()
+    deletar_imagem(jogo.id)
+    arquivo.save(f'{upload_arquivo}/capa{jogo.id}-{timestamp}.jpg')
+
     return redirect(url_for('index'))
 
 @app.route('/criar', methods=['POST',])
@@ -62,6 +71,12 @@ def criar():
     novo_jogo= Jogos(nome=nome,categoria=categoria,console=console)
     db.session.add(novo_jogo)
     db.session.commit()
+
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo = request.files['arquivo']
+    timestamp = time.time()
+    arquivo.save(f'{upload_path}/capa{novo_jogo.id}-{timestamp}.jpg')
+
     return redirect(url_for('index'))
 
 
@@ -83,8 +98,15 @@ def autenticar():
         flash('Usuário não logado.')
         return redirect(url_for('login'))
 
+
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None
     flash('Logout efetuado com sucesso!')
     return redirect(url_for('index'))
+
+
+@app.route('/uploads/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads',nome_arquivo)
+

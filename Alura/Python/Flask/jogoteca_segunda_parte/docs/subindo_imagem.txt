@@ -1,0 +1,67 @@
+[00:00] Agora que temos as operações do CRUD completas, chegou a hora de nos dedicarmos a novas funcionalidades na nossa aplicação. Vamos associar a cada novo item adicionado na Jogoteca uma imagem (a capa do jogo), porque, às vezes, não reconheço o jogo pelo nome mas reconheço pela capa ou quero ilustrar um pouco melhor o que pode aparecer no jogo, quero realmente julgar o jogo pela capa.
+
+[00:26] Então, na rota de /novo para adicionar um novo item, quero que apareça um novo input com um botão. Ao clicar nele, poderemos adicionar algum arquivo de imagem da minha própria máquina, fazer o upload dele para a nossa aplicação. Então, vamos até a nossa aplicação para começar a fazer isso.
+
+[00:45] Quando pensamos no formulário do nosso navegador, estamos pensando na página HTML. Se falo em HTML, estou falando de templates. Então, vamos vir no “novo.html” da pasta de “templates” da nossa aplicação e vamos adicionar um novo input. Vou adicionar esse novo input logo depois da primeira tag de form.
+
+[01:06] Então, vou abrir uma chave simples, colocar input e dentro da nova tag de input vou colocar o tipo do input que será <input type="file">. E o nome que vou dar para ele vai ser <input type="file" name="arquivo">. O nome é importante porque se não tiver um nome no input, não conseguimos chamar ele na rota. Então, não conseguimos associar informações na nossa rota.
+
+[01:37] E além do tipo do input e do nome, precisamos adicionar uma informação adicional, uma informação a mais que é o tipo de arquivo que ele vai aceitar. O tipo de arquivo que quero que ele aceite, vou colocar, <input type="file" name="arquivo" accept=".jpg" >. Quero que ele aceite apenas arquivos do tipo .jpg que é um tipo de arquivo de imagem.
+
+[02:03] Falando completamente, tenho chaves simples, <input type="file" name="arquivo" accept=".jpg" >. Então ficou assim a nossa nova tag de input. Dando um refresh na página, já vai estar aqui o botão para escolher um novo arquivo da nossa máquina. Posso até escolher um arquivo que seja .jpg.
+
+[02:34] Só que não vai acontecer nada se adicionarmos porque não existe nenhuma rota da nossa aplicação recebendo essa informação do arquivo. Então vamos no “views.py” e a rota que temos que editar é a rota criar. É a rota criar que está recebendo as informações de um novo item e que cria realmente um novo item.
+
+[02:50] Então vamos vir logo depois da linha que “comita” um novo item da aplicação vou criar uma variável que vou dar o nome de arquivo, arquivo. E dentro dessa variável vou receber as informações lá da imagem que estou passando no formulário. E para receber informações de um formulário o que faço? Uso o request, arquivo = request. Request.forms? Não porque aqui não estamos recebendo informações simples, informações escritas.
+
+[03:21] Estamos recebendo uma informação de um arquivo. Então vou colocar, arquivo = request.files[' '] e tenho que dizer o nome do input que no caso é arquivo, arquivo = request.files ['arquivo']. E agora o que tenho que fazer é guardar as informações que recebi na variável arquivo em algum lugar. Tenho que guardar a imagem em algum lugar.
+
+[03:42] E tem dois caminhos diferentes que podemos seguir e que até dependem da regra de negócio que você está seguindo do desenvolvimento da sua aplicação. Você pode guardar dentro do seu banco de dados as imagens. Só que por um lado, se você guardar no banco de dados, geralmente isso pode custar mais para você. É mais custoso guardar arquivos do tipo imagem dentro de banco de dados.
+
+[04:03] E alguns desenvolvedores preferem deixar o banco de dados só para guardar informações, dados bem estruturados. Poderia guardar essas imagens também em disco, dentro do meu servidor em uma pasta que for criar. Por outro lado, as informações podem ficar dessincronizadas. Então tem os prós e contras dessas duas maneiras de se guardar imagens. Vai ter um Para Saber Mais falando melhor sobre essas duas decisões de negócio.
+
+[04:28] A opção que vou escolher vai ser criar uma pasta na aplicação para guardar essas imagens. Vou criar um diretório dentro do meu “jogoteca” que vou chamar de “uploads”. E quero guardar todas as imagens dentro desse diretório de uploads. Então vou colocar, arquivo.save. Então logo depois que eu receber as informações do formulário a respeito dessa imagem e declarar essa variável arquivo, na linha seguinte vou colocar, arquivo.save.
+
+[05:07] E esse arquivo.save vai salvar as informações dessa variável arquivo no caminho que eu direcionar ele dentro do .save. Vou usar uma forma de formatação do Python que é f aspas simples e colocar o caminho do uploads, arquivo.save(f'uploads/{arquivo.filename}'). Aqui ele vai pegar o nome do arquivo que está sendo feito o uploads lá no navegador e vai usar ele como nome para salvar dentro da pasta “uploads”.
+
+[05:48] Então já tem que dar certo. Já está tudo certo. Já é para funcionar. Vamos na aplicação no navegador, dar um Refresh e adicionar um novo jogo. Vou adicionar um jogo que já tenho uma imagem que é o Celeste. Vou colocar “Celeste.jpg”. O nome do jogo é “Celeste”, a categoria é “Puzzle” e o console é “PC”. Então vou adicionar ele. Deu um erro.
+
+[06:16] Ele está dizendo que está faltando alguma coisa. Está dizendo que para eu consertar esse erro, tenho que adicionar um enctype lá no formulário. O enctype é o tipo de arquivo que quero adicionar. Então precisamos adicionar essa tag no formulário para fazer a inserção dessa imagem dar certo no servidor.
+
+[06:39] Vou em “novo.html” e lá na tag de formulário tem form, tem action que ele vai estar passando as informações para a rota de criar e o método post. Então do lado vou colocar o enctype enctype="multipart/form-data". Então isso vai permitir que mandemos realmente arquivos para o nosso servidor.
+
+[07:05] Vou voltar na página inicial. Ele acabou cadastrando o Celeste, mas acabou cadastrando sem a imagem porque essa parte da imagem não deu certo. Então vou deletar o Celeste e colocar ele de novo. Vou colocar “/novo”, escolher a imagem do Celeste, "Imagem > Celeste.jpg", colocar de novo as informações do jogo que o nome é “Celeste”, a categoria é “Puzzle”, o console é “PC” e dar um "Salvar" e não deu nada de erro.
+
+[07:38] O jogo foi cadastrado no nosso bando de dados, as informações foram. Vamos voltar na nossa aplicação, no código. Se formos ver na pasta de “uploads”, está aqui, “Celeste.jpg”. Se acessarmos nós conseguimos visualizar a imagem. Então está aqui a imagem do jogo. Conseguimos inserir e associar uma imagem a um determinado jogo. Ele colocou “Celeste.jpg”.
+
+[08:04] Só que se formos dar uma olhada, colocarmos dessa forma o caminho da pasta, não é exatamente uma coisa interessante porque imagina que toda vez que o usuário ou a pessoa que estiver inserindo uma imagem colocar o nome da imagem de imagem e toda vez que ela fizer a inserção de um novo jogo todas as imagens dela estão nomeadas de imagem.
+
+[08:26] Então isso via causar um conflito muito grande no código. Quando quisermos associar um jogo ao outro, sempre os nomes vão estar como imagem. Então colocar o nome da forma que o usuário está fazendo no upload, não é exatamente uma boa prática. Temos que mudar isso, temos que colocar um nome personalizado. E é isso que vamos fazer no próximo vídeo.
+
+
+
+[00:00] Então, vamos mudar esse caminho que colocamos no arquivo.save. Por quê? Porque se o usuário que está cadastrando os novos jogos e, por alguma preferência, coloca sempre “imagem.jpg”, por exemplo, sempre vamos pegar o nome de “imagem.jpg” em todos os jogos cadastrados. Vai ficar difícil associarmos um jogo com uma imagem específica e todos os arquivos podem ter o mesmo nome e dará problema de compatibilidade.
+
+[00:33] Então, o que é interessante fazermos é personalizar nós mesmos o nome de cada jogo colocado na nossa aplicação. Podemos fazer isso utilizando o id de cada jogo. Em vez de arquivo.filename, vou apagar das chaves que estão presentes no arquivo.save, posso usar o id do novo jogo que temos.
+
+[00:56] Vou colocar, {novo_jogo.id} e logo depois tenho que colocar .jpg para indicar que é uma imagem, {novo_jogo.id}.jpg. E, dessa forma, sempre vamos usar o id do jogo que estamos cadastrando com o nome dele mesmo. Para não deixar só o id, vou colocar capa antes da chave e vai ficar, capa{novo_jogo.id}.jpg. Pronto, assim sempre vamos ter arquivos únicos para cada jogo que cadastrarmos. Isso já vai resolver um problema para nós.
+
+[01:30] Mas outro problema é que, conforme a nossa aplicação cresce, esse caminho colocado hard coding, uploads, vai acabar perdendo o sentido. Já expliquei isso no último vídeo: colocar caminhos hard coding nunca é uma boa ideia. Então, o que vamos fazer é criar um caminho mais relativo para encontrar esse diretório que é o diretório dos uploads onde estamos colocando todas as imagens.
+
+[01:59] Podemos criar uma variável chamada upload_path e colocar dentro dessa variável algum caminho relativo. Mas um lugar que é melhor ainda para criarmos essa variável, em vez do views.py, seria se criássemos dentro das configurações da nossa aplicação, no arquivo de config.py. Então, posso acessar o config.py e criar essa variável aqui dentro.
+
+[02:34] Então, vou criar e colocar em letra maiúscula, UPLOAD_PATH. E dentro dela como vou fazer para encontrar o caminho do diretório uploads? Posso começar utilizando um argumento que é relativo a própria pasta que estou agora que é config.py que é o dunder file, __file__ que é uma forma de escrevermos uma referência ao próprio arquivo em que estamos.
+
+[03:11] E para acharmos o caminho que esse arquivo em que estamos está, o caminho absoluto que esse arquivo está, podemos utilizar uma biblioteca já embutida do Python que é a OS Operating System. Vamos importar ela, import os. E a função que utilizamos seria, os.path.abspath(__file__). Coloquei, UPLOAD_PATH = os.path.abspath(__file__). Então o código ficou assim.
+
+[03:59] Só que estamos captando o caminho absoluto para o arquivo que está aqui, o config.py. E quando digo caminho absoluto quero dizer lá desde o início e não só desde “jogoteca”. O que precisamos seria o caminho absoluto para a nossa pasta “jogoteca” e não para esse arquivo. Não é isso que queremos. Então podemos usar outra função do OS que é, ps.path.dirname() e podemos colocar tudo isso que tínhamos feito antes dentro dessa função dirname. Por quê?
+
+[04:36] Porque o dirname devolve o caminho do diretório que estamos colocando aqui dentro, do caminho que colocamos aqui dentro. Então o que ele vai devolver? Ele vai devolver o caminho do nosso diretório “jogoteca”. E para acharmos o caminho do “uploads”, basta fazermos uma concatenação de String. Colocamos + '/uploads'. Não esquecendo da barra.
+
+[05:12]. E dentro dessa variável já vai estar o caminho completo mais relativo para a pasta de “uploads” de dentro da aplicação. Vamos voltar no “views.py” e dentro dessa variável upload_path vou colocar a informação da aplicação. Vou colocar, upload_path = app.config['UPLOAD_PATH']. E dentro do arquivo.save onde estava escrito uploads posso apagar, colocar chaves e colocar arquivo.save(f ‘{upload_path}/capa{novo_jogo.id}.jpg’)’. Pronto.
+
+[05:55] Agora tenho um caminho muito melhor para utilizarmos para colocar as imagens. Então isso vai ficar bem melhor. Vou fazer um teste. Vou apagar essa imagem atual do Celeste, vou na aplicação e apago até o jogo do Celeste do banco de dados. Agora vou adicionar um novo jogo, colocar a imagem do jogo Celeste. Vou colocar o nome do jogo Celeste, a categoria Puzzle, console PC e salvar.
+
+[06:38] Aparentemente, deu tudo certo. Vamos dar uma olhada na imagem. O nome dela já veio mudado. Então o id do jogo Celeste é 8, então já veio "capa8". Isso já vai nos ajudar muito no nosso processo de colocar imagens em cada um dos jogos. Então a nossa aplicação está ficando legal. Só que tem uma coisa. Quando viemos na aplicação e adicionamos um novo jogo, vamos ver que aparece apenas um botão.
+
+[07:10] Seria legal se aparecesse uma imagem já mostrando que não tem nenhuma imagem ainda adicionada no jogo. Vamos deixar a nossa aplicação um pouco mais legal nesse sentido. Vamos adicionar uma imagem padrão para quando formos escolher um novo arquivo para colocar aqui. Vamos fazer isso no próximo vídeo.
