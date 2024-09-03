@@ -1,0 +1,27 @@
+[00:00] Então já estamos bem avançados na nossa aplicação. Estamos chegando próximo do final. Falta resolvermos o item nulo e ver essa questão da autenticação do formulário que estamos enviando. Mas existem algumas questões de usabilidade que podemos melhorar no nosso site. Justamente porque ao chegar no final podemos entregar para os nossos amigos para eles darem uma olhada e ver como está funcionando bem legal a nossa aplicação.
+
+[00:26] Se quero adicionar um novo item, até agora tenho que ir na barra do URL e digitar “/novo” ou se quero fazer o login, “/login” ou logout, “/logout”. Seria legal ter três botões na página inicial para fazer essas três coisas, para fazer o login, o logout e para adicionar um novo item. E nas próprias páginas de novo e de login, seria legal se tivesse um botão para voltar.
+
+[00:51] Se eu quiser no meio do caminho falar, "Não, não quero mais fazer o login, quero voltar". Então vamos adicionar esses botões nos templates. Vou no código, na pasta de projetos e começar editando a página de “lista.html” que é a página inicial da nossa aplicação. O que vou fazer? Vou adicionar logo no início do código HTML entre o código que me mostra que isso é um bloco de conteúdo e a tag table, vou colocar três tags que vão ser três botões.
+
+[01:28] São aqueles botões que acabamos de falar. Quero colocar três botões para login, logout e a página de "novo". Vou colocar três botões, <a></a> <a></a> <a></a>. E como vou adicionar o botão? Vou usar a tag <a>, que vai me ajudar. E dentro dessa tag <a> vou colocar <a href ></a>.
+
+[01:52] E dentro desse href que vai me mostrar a referência da onde quero ir a partir desse botão, vou abrir duplas chaves que vai me permitir colocar código Python e vou colocar url_for e dentro dos parênteses vou colocar a rota que quero ir. A primeira rota que quero ir é a rota de login, <a href="{{ url_for('login') }}"></a>. Quero ir para a rota de login porque às vezes a pessoa está visualizando a lista, mas se lembrou que não fez o login e quer fazer o login.
+
+[02:23] Então é para a rota de login que quero ir primeiramente. E como o nome do botão, vou colocar login, <a href="{{ url_for('login') }}">Login</a>. Embaixo como vou fazer? Vou copiar esse trecho de código. Aqui não vai ser login, quero que seja logout, <a href="{{ url_for('login') }}">Logout</a>. O segundo botão vai ser de logout.
+
+[02:45] O caminho tem que ser para rota de logout também, <a href="{{ url_for('logout') }}">Logout</a>. Só mudei na url_for para logout. O terceiro botão vai ser para rota de "novo". Vou colocar <a>Novo Jogo</a>. Dentro da tag vou copiar esse segmento de código que me dá a referência e colocar dentro, <a href="{{ url_for('logout') }}">Novo Jogo</a>. Isso é só para não digitar url_for de novo.
+
+[03:15] E vou colocar o caminho que vai ser novo, <a href="{{ url_for('novo') }}">Novo Jogo</a>. Barra novo. Isso já vai mudar a nossa aplicação se voltar para a lista e der Reload. Vai aparecer Login, Logout e Novo Jogo. Mas não está muito bonito. Dá para adicionar algumas classes que vão deixar a coisa um pouco melhor.
+
+[03:34] Então vou colocar, <a class. No primeiro botão vou adicionar, <a class="btn btn=primary". Na segunda vou adicionar, <a class="btn btn-danger". Na terceira vou adicionar a primary também, <a class="btn btn-primary". E vamos ver como vai ficar lá. Vou dar Reload na aplicação. É assim que ficou. Primeiro a classe btn btn=primary gera um botão desse jeito, um botão azul. E o btn btn-danger gera um botão vermelho.
+
+[04:20] Então ficou um botão de Login azul, um botão de Logout vermelho e um botão de Novo Jogo azul novamente. Ficou assim. Vamos ver se funciona. Está me direcionando para as páginas que quero. Acabei de fazer o Logout, fui para a página de Novo Jogo, mas ele não me permitiu porque preciso fazer Login. Está funcionando.
+
+[04:39] Agora vamos na página de Login mesmo. Quero colocar um botão de retorno que vai ter aquela mesma classe de btn-danger. Vou voltar e pegar a classe de Logout, dar um "Ctrl + C" e colar logo depois da tag de fechamento do form que eu tenho em “login.html” ainda dentro da div. Vou mudar o nome do botão de logout para Voltar e mudar a rota que quero encaminhar para rota de index, <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>.
+
+[05:17] Então está aí o botão. Também quero adicionar um botão de Voltar para o template de "novo.html". Lá embaixo, ainda dentro do fieldset vou adicionar esse botão, logo em cima da tag de fechamento do fieldset, logo depois do botão de submit vou adicionar esse mesmo botão de voltar também para o index, <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>.
+
+[05:47] E faltou a rota de editar que também quero adicionar um botão de retorno. Então vou na rota de editar. Também quero um botão de retorno que vai ficar logo depois do botão de submit ainda dentro do fieldset, <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>. Está aqui mais um botão de retorno. Vamos ver como ficou na aplicação. Vou dar um Reload.
+
+[06:08] Tenho que fazer o Login antes senão não vou conseguir. Fiz o Login. Vou colocar um novo jogo e ele me traz para a aba de Novo Jogo e tem o "Voltar" que me traz de volta para a página. Pronto. Melhorou um pouco a usabilidade da nossa aplicação. No próximo vídeo vamos ver essa questão do item em branco que temos. Até lá.

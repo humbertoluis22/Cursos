@@ -1,0 +1,34 @@
+[00:00] Conseguimos criar a classe que vai representar o formulário de novo item. Mas agora vamos colocá-lo para uso na nossa aplicação. Vamos no “views.py” e acessar as rotas de "Novo" e de "Criar" que são as rotas que acabam gerando um novo item. A primeira coisa que precisamos fazer é vir na rota de "Novo" e instanciar aquele formulário.
+
+[00:25] Vou colocar logo antes do return render_template da rota "Novo", vou colocar, form = FormularioJogo. Só que como não tenho ele, tenho que fazer o import dele. Vou lá em cima no from helpers import e colocar from helpers import recupera_imagem, deleta_arquivo, FormularioJogo. Então agora já consegui instanciar. Só que instanciar não basta.
+
+[00:56] No return render_template tenho que passar dentro de uma variável essa instanciação. Vou passar dentro da variável form o formulário que acabei de instanciar, return render_template('novo.html', titulo='Novo Jogo', form=form. Então estou passando essa informação lá para o “novo.html”.
+
+[01:13] Vamos no “novo.html” e fazer as mudanças necessárias para o código funcionar. No “novo.html” o que tenho é o HTML padrão para a criação de formulários. Dentro da tag fieldset tenho as divs. Cada div específica de um input e dentro de cada div uma tag label e uma tag de input mesmo que é onde vai ser colocada a informação.
+
+[01:45] O que vamos fazer é substituir a tag de label e a tag de input por uma coisa própria que o Flask WTForms vai nos dar. Então o que vou fazer vai ser apagar essas tags de label de input de cada uma das divs do fieldset do “novo.html”. Vou apagar todas elas.
+
+[02:09] E dentro da primeira div que é onde ficaria o input do nome do jogo, vou colocar dupla chaves e dentro dessa dupla chaves que é onde vou digitar o código Python vou colocar <div class="from-group"> {{ form.nome() }}. Simples assim já vou conseguir chamar o input para inserir informações a respeito do nome.
+
+[02:41] Vou fazer a mesma coisa, vou repetir da mesma forma para os outros inputs. Só que vou colocar categoria em vez de nome nos outros, <div class="from-group"> {{ form.categoria() }}. Categoria e console em vez de nome, <div class="from-group"> {{ form.console() }}. Só que isso só mostra o input. Para colocar label antes desse form.nome() acima dele vou colocar dupla chaves de novo e colocar da mesma forma, <div class="from-group"> {{ form.nome.label() }}.
+
+[03:22] Então vou repetir a mesma coisa para os outros substituindo o nome por categoria e console. Vou colocar categoria e console, <div class="from-group"> {{ form.categoria.label() }} {{ form.categoria() }} e console, <div class="from-group"> {{ form.console.label() }} {{ form.console() }}.
+
+[03:40] E não fazemos só isso. Temos que adicionar também o submit. Existe um botão próprio do HTML que faz submit. Só que dentro do formulário também definimos a nossa variável de submit. Temos que usar aqui. E como vamos fazer? Primeiro vamos apagar esse botão que já existe de submit e vamos acrescentar uma nova div em que vamos colocar esse botão de submit.
+
+[04:12] O que vou fazer vai ser abrir dupla chaves e dentro vou colocar {{ form.salvar() }}. E aí tem como usarmos também classes de CSS dentro dessa forma de colocarmos formulários. Basta que coloquemos a classe dentro desses parênteses que estamos criando. No caso, para as labels vou colocar <div class="form-group"> {{ from.nome.label(class="form-label") }} e vou replicar isso para todas as labels.
+
+[04:59] Vou colocar aqui, "Ctrl + C" e "Ctrl + V". Dentro do form.nome o que vou fazer vai ser colocar uma classe, {{ from.nome(class="form-control") }}. Também vou copiar e colar embaixo nas outras. Já adicionei. E no form.salvar vou colocar uma classe que já temos que é a classe, {{ from.salvar(class="btn btn-primary") }}. Já temos o formulário pronto.
+
+[05:45] Só que vamos estar pegando as informações no formulário do “novo.html” e enviando de volta para as “views.py” no criar. Como vamos receber essas informações? Vamos instanciar novamente o form. Estou na rota de criar e vou instanciar novamente uma variável de form onde vou pegar form = FormularioJogo(request.form) e vou receber todas as informações daquele formulário.
+
+[06:20] A primeira coisa que tenho que fazer é efetivar a validação. Vou fazer isso abrindo um único if e não vários. Isso é muito bom. Dentro desse if vou colocar, if form.validate_on_submit(). Validate_on_submit vai ser uma função, um método que vai retornar true ou false dependendo se o formulário vai estar validado ou não.
+
+[06:46] Só que o que quero nesse if é a resposta, caso ele não for validado. Se ele não for validado quero que haja, return redirect(url_for('novo')) e quero que ele seja redirecionado para novo novamente. Então está aqui, fizemos a validação. E embaixo para conseguirmos recuperar as informações de cada um dos campos, não usamos mais request.form. Vamos utilizar um form específica do Flask WTForms para recuperarmos essas informações.
+
+[07:26] Então vamos apagar e colocar, nome = form.nome.data. E assim conseguimos as informações de cada uma das categorias. Vou utilizar em cada um deles. Só substituir por categoria, categoria = form.categoria.data e substituir por console, console = form.console.data. Com isso já vamos ter o formulário de "novo" funcionando. Vamos dar uma olhada. Vou dar um recarregar e parece que a nossa aplicação parou de funcionar momentaneamente.
+
+[08:07] Vou dar um Run de volta. Foi. Vou voltar e dar um Refresh e pronto, a nossa aplicação está funcionando. O formulário de "novo" está funcionando novamente. Então podemos adicionar um novo jogo tranquilamente. E se eu tentar dar um "Salvar" sem adicionar nenhuma informação no formulário? Vou tentar. Não consigo. Ele não me deixa. Tenho que preencher.
+
+[08:36] Se colocar um nome qualquer em Novo Jogo e tentar salvar ele vai falar que o próximo não está em conformidade. Isso é bem interessante. Ele vai fazer essa validação para nós. E agora o que vamos fazer é mudar todos os outros formulários da nossa aplicação para também utilizarmos esse raciocínio de validação que o Flask WTForms oferece para nós. Até o próximo vídeo onde vamos fazer isso.
+

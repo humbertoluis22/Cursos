@@ -1,0 +1,42 @@
+00:00] Vamos dar uma atenção agora a esse item nulo que acabamos de adicionar. Não faz sentido conseguirmos adicionar itens nulos. Se eu vier na aba de “Novo Jogo”, ele teria que me impedir de fazer isso de alguma forma. Existe uma forma de mexermos nisso no front-end, mexer com isso no HTML.
+
+[00:18] Mas seria interessante que tivéssemos alguma forma no server, no código no Flask, no servidor que impedisse uma pessoa de adicionar um item nulo na nossa aplicação como Novo Jogo. Então poderíamos ir no if e fazer essa validação do formulário, como é denominado isso, através da criação de vários ifs na rota de novo ou de criar.
+
+[00:45] Podemos colocar if para um tipo de situação, if para outro tipo de situação e colocar várias condicionais uma dentro da outra infinitamente e é isso que de fato aconteceria se utilizássemos condicionais. E já se sabe que não é uma boa prática ficarmos infinitamente utilizando condicionais dentro do desenvolvimento de aplicações Web.
+
+[01:05] E é por isso que muitos frameworks por aí possuem extensões que facilitam a nossa vida nesse tipo de integração com formulários e validação de formulários. E esse é o caso também do Flask que possui o Flask WTForms. O Flask WTForms é justamente isso, uma extensão que possui uma integração com formulários.
+
+[01:26] Ela não só pode criar os próprios formulários através da linguagem Python integrada com o HTML, como também pode fazer essa validação de uma forma mais dinâmica e também garante um pouco mais de segurança de formas que ainda vamos ver ao decorrer dos vídeos.
+
+[01:42] Então o que vamos fazer é utilizar ele agora. Vamos na aplicação e a primeira coisa para utilizar ele é instalar. Vamos no terminal e vou instalar ele com pip install. Vou colocar, flask-wtf==1.0.0. Vou dar um "Enter" e o pip vai instalar para mim. Temos instalado o Flask WTF.
+
+[02:17] Para podermos utilizar um formulário do Flask WTF, precisamos criar uma classe que vai representar esse formulário bem parecido com o que fizemos com o SQL Alchemy, com o banco de dados. Então o que vou fazer vai ser achar um espaço na nossa aplicação que vou escolher dentro do projeto o meu arquivo de “helpers.py”. Vou criar a classe dentro do “helpers.py”.
+
+[02:42] A primeira coisa que vou fazer vai ser um import, from flask_wtf import FlaskForm e logo abaixo dessa importação vou criar uma classe que vou chamar de class FormularioJogo. Vai ficar formulário com f maiúsculo e jogo com j maiúsculo também. E entre parênteses vou colocar FlaskForm e dois pontos, class FormularioJogo(FlaskForm):.
+
+[03:24] Dentro dessa classe vou passar algumas variáveis. Os argumentos que vou passar dentro da classe, as variáveis, vão representar cada uma um input diferente lá do formulário. Se voltarmos na aplicação, no formulário de "novo" vou ter três inputs que é de nome, categoria e console. Vou na aplicação e fazer, nome categoria console.
+
+[03:55] O que vou colocar dentro de cada uma dessas variáveis? A primeira coisa que preciso fazer é ver de qual tipo vai ser o dado que vou colocar dentro de cada input. E no caso dos três, vai ser um dado do tipo String. Então o que vou fazer vai ser colocar StringField. Só que antes disso preciso importar esse método que é o StringField. Vou colocar, from wtforms import StringField.
+
+[04:32] Vou colocar StringField para os três, nome = StringField() categoria = StringField() console = StringField(). E dentro do nome, a primeira coisa que vou passar dentro dos parênteses do StringField, com aspas simples e com String vou passar o nome da label que quero que tenha dentro desse input, que no caso vai ser nome = StringField('Nome do Jogo').
+
+[05:03] A segunda coisa que vou passar dentro dos parênteses vai ser a forma de validação que vou querer desse input. Então a primeira coisa que já sei que eu quero é que ninguém consiga colocar informações. Quero que ele se certifique que existe algum tipo de dado ali dentro e que, no caso, vai ser uma String. Mas aqui ele já vai fazer essa validação.
+
+[05:26] Então ele tem que verificar se tem algum tipo de dado. Então tenho que fazer a validação. A primeira coisa é a validação. E para fazer uma validação preciso importar uma coisa junto do WTForms que é o validators, from wtforms import StringField, validators.
+
+[05:40] Então vou voltar na variável nome e abrir colchetes e dentro dos colchetes vou colocar nome = StringField('Nome do Jogo', [validators.DataRequired()]). Então a primeira coisa que ele vai fazer validar os dados. Mas abri um colchete e isso significa que vai ter mais de uma coisa que quero validar. E a outra coisa que vou querer validar vai ser o comprimento da String que quero adicionar dentro do nome.
+
+[06:17] Quero colocar um limite. Vou colocar nome = StringField('Nome do Jogo', [validators.DataRequired(), validators.Lenght()]). Dentro dos parênteses vou colocar o mínimo que quero que seja 1, nome = StringField('Nome do Jogo', [validators.DataRequired(), validators.Lenght(min=1, max=]). E o máximo vou ver no banco de dados como criei esse espaço de nome.
+
+[06:39] Então vou voltar no “prepara_banco.py” e dar uma olhada. No “prepara_banco.py” eu coloquei que o nome tem que ter no máximo 50 caracteres. Vou no “helpers.py” e coloco que o máximo vai ser 50, nome = StringField('Nome do Jogo', [validators.DataRequired(), validators.Lenght(min=1, max=50]). Então o que vou fazer vai ser copiar todos esses parâmetros que passei para o nome e colocar na Categoria também porque é bem parecido.
+
+[07:06] No caso não vai ser Nome do Jogo o nome da label para categoria. Vai ser nome = StringField('Categoria', [validators.DataRequired(), validators.Lenght(min=1, max=]). Também vai ser DataRequired. O mínimo também vai ser 1 caractere. Mas o máximo, se ver no “prepara_banco.py” vai ser 40 caracteres de máximo, nome = StringField('Categoria', [validators.DataRequired(), validators.Lenght(min=1, max=40]).
+
+[07:28] E no caso do console também vou pegar todas essas informações e vou passar. Vou alterar o nome da label para Console, nome = StringField('Console', [validators.DataRequired(), validators.Lenght(min=1, max=]). O validators vai ser DataRequired. O mínimo de caracteres vai ser 1 e o máximo vamos checar no “prepara_banco.py”, vai ser 20, nome = StringField('Console', [validators.DataRequired(), validators.Lenght(min=1, max=20]).
+
+[07:53] É sempre bom você verificar isso. Sempre tem que ser o mesmo máximo de caracteres que está incluso lá no banco de dados. Isso é importante, senão pode acontecer algum erro. A nossa classe está quase formada com exceção de que existe um campo a mais que é campo de submit, o input de submit. É quase um input e quase que não. Mas é o submit.
+
+[08:17] Vou colocar, salvar = SubmitField(). Ainda não importarmos o SubmitField, então ele está dando erro. É só ir no wtforms import e colocar juntamente o from wtforms import StringField, SubmitField, validators. E dentro do SubmitField da variável salvar, o que vou fazer vai ser passar a label que quero que apareça que é Salvar, salvar = SubmitField('Salvar').
+
+[08:55] Então prontos, criei a classe que vai representar o meu formulário. E agora o que falta fazermos é realmente colocar essa classe para valer. Ir na “views.py” e em cada uma dessas views instanciar essa classe e, de alguma forma, representar elas lá nos formulários, no formulário de “novo.html”, por exemplo. Como vai ficar esse formulário? Isso vamos ver no próximo vídeo.
+

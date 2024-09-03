@@ -1,0 +1,41 @@
+[00:00] Agora vamos integrar o formulário de editar com o Flask WTForms. Vamos entrar em algum dos formulários de editar. Pode ser o do Super Maria Galaxy. Vamos ver que esse formulário tem uma coisa diferente, ele já apresenta informações dentro de cada um dos inputs, o input nome, categoria e o Wii que temos. Na verdade, console com a informação do Wii.
+
+[00:26] Então vamos no código e ver como vai ficar. Vamos começar na nossa rota de editar. Naturalmente é aqui que começa o nosso raciocínio de atualizar algum item. O que vamos fazer por primeira, da mesma forma que fizemos na rota novo no último vídeo, é instanciar o formulário que vai ser utilizado.
+
+[00:46] Vamos colocar logo depois da variável jogo que é aquela variável que captura através de uma query o jogo que temos no banco de dados que tem o mesmo id daquele que está sendo informado lá no formulário do navegador. Logo depois dessa variável jogo vamos instanciar, form = FormularioJogo(). E pronto, fizemos essa instanciação.
+
+[01:11] E já aqui vamos passar as informações que temos lá no banco de dados para os inputs para eles já aparecerem para o usuário só para que ele altere. O que vamos fazer vai ser colocar, form.nome, no caso, o input que estou colocando é nome form.nome.data. Quando colocamos, form.nome.data, estamos acessando os valores daquele input. O valor do input nome.
+
+[01:42] E quero alterar esse valor para um valor que já tenho lá no banco de dados que é o jogo.nome que conseguimos acessar através do form.nome.data = jogo.nome. O que vou fazer vai ser replicar isso para todos os inputs que já tenho. Então vou colocar o input categoria, form.categoria.data = jogo.categoria e mudar para console, form.console.data = jogo.console.
+
+[02:20] Então tenho três linhas de código, form.nome.data = jogo.nome, form.categoria.data = jogo.categoria e form.console.data = jogo.console. Assim já atribuo alguns valores no input para aparecer para o usuário. O que precisamos fazer agora é passar esse objeto que criamos, que é o formulário, lá para o “editar.html”, para o template.
+
+[02:48] E vamos fazer isso através do render_template em que vamos passar uma variável chamada form=form. Vamos no “editar.html” e se percebermos, é tudo muito parecido com o nosso formulário de “novo.html”. Também temos o fieldset, temos as divs. Cada div separa um tipo de input, com a label e o próprio input em si. O que vamos fazer vai ser ir no “novo.html” e copiar as informações que temos lá.
+
+[03:31] Vamos copiar as informações porque realmente vai ser igual. Vou vir no label e no input de nome e vou substituir no “editar.html”. Vou fazer todo esse processo de pegar do “novo.html” e substituir no “editar.html”. Só pegando de um template e passando para o outro. Também vou fazer isso com a div de submit que criei especialmente para isso. Vou apagar o submit antigo que tinha e incluir o novo.
+
+[04:13] Só que no “editar.html” não temos o botão de voltar. Vamos no “novo.html” e já temos o exemplo de botão de voltar. Vamos inserir ele dentro da div mesmo que criei para o botão de submit. Vamos deixar os botões dentro da mesma div. Inclusive, no “novo.html” vamos fazer isso também. Vou pegar isso e colocar todos os botões dentro da mesma div. Vai ficar mais organizado.
+
+[04:39] E todas as divs também possuem esse <div class="form-group">. Também vamos padronizar e colocar nas divs o class group. E no editar se percebermos, existe um input do tipo hidden que leva o id do jogo adiante. O que temos é que no velho colocamos jogo.id e estamos passando através do editar uma instanciação, um objeto de jogo.
+
+[05:13] Não precisamos passar o objeto inteiro mais. Podemos passar simplesmente apenas o id. Posso colocar em vez de jogo=jogo, vou alterar para id=id. Lá no “editar.html” vou apagar o jogo.id e deixar apenas id no value do input tipo hidden. Fiz as alterações no template “editar.html” e na rota editar. Agora vou na rota atualizar e fazer as atualizações.
+
+[05:47] Então o que vou fazer primeiramente vai ser instanciar novamente o formulário. Então vou colocar, form = FormularioJogo() e puxar as informações do formulário que já tenho através do form = FormularioJogo(request.form). Em seguida, o que vou fazer vai ser abrir uma condicional e colocar dentro dessa condicional if form.validate_on_submit():.
+
+[06:13] E vou colocar todo o raciocínio dessa rota de atualização dentro desse condicional. Então tudo isso só vai acontecer se o formulário for validado. Com exceção do redirect que vou deixar de fora dessa condicional. E a última alteração que preciso fazer é substituir onde estou colocando jogo.nome = request.form['nome'], onde estou recebendo os itens do formulário para substituir aqueles do banco de dados.
+
+[06:42] Não quero mais fazer dessa forma. O request.form não funciona mais. Temos que utilizar o, jogo.nome = form.nome.data. Nesse caso é nome. E vou replicar isso para todos os outros inputs do formulário. Então vou colocar em vez de nome categoria, jogo.categoria = form.categoria.data e em vez de nome vou colocar console, jogo.console = form.console.data.
+
+[07:11] Agora já podemos testar na nossa aplicação. Vou na aplicação, vou dar um "Voltar" e entrar de novo no Super Mario Galaxy. Vou editar ele. Quero colocar outra capa. Em vez de Super Mario Galaxy, quero colocar o Super Mario Galaxy 2. Então vou editar também o nome, em vez de Super Mario Galaxy, "Super Mario Galaxy 2" e dar um "Salvar". Olha só, não foi. Ele não alterou na lista. A lista continua a mesma coisa. Se entrar e "Editar" a capa também não atualizou. O que aconteceu?
+
+[07:45] O que aconteceu é que está faltando uma coisa no formulário, uma coisa que o FlaskWTF exige para nós que é um token de CSRF. O que esse token faz? Ele previne um tipo de falha de segurança que existe nos formulários da Web que é o Cross-Site Request Forgery. O que acontece é que existe uma forma de implicar a segurança dos posts e requests, principalmente dos requests de alguns formulários da Web.
+
+[08:14] E esse token ajuda criando um número único tanto do lado do servidor quanto do lado do navegador e toda vez que nesse formulário é feito request ou post, é comparado os dois números dos dois lados, do lado do servidor e do lado do navegador. Então precisamos desse token que vai criar esse número aleatório.
+
+[08:31] Mais informações sobre esse tipo de falha de segurança vão estar no Para Saber Mais dessa aula. Vamos no projeto e no “jogoteca.py”. Faz tempo que não mexemos nele. Então agora vamos dar uma alterada. No “jogoteca.py” logo depois da instanciação do db com o SQLAlchemy, vou instanciar outra coisa. Mas antes vamos fazer um novo import. Vamos fazer um import desse tipo de token.
+
+[09:01] Então vou colocar, from flaskwtf.csrf e quero importar o CSRFProtect, from flaskwtf.csrf import CSRFProtect. E depois da instanciação do banco de dados com SQLAlchemy, o que vou fazer vai ser colocar, csrf = CSRFProtect(app) e entre parênteses passei a aplicação. E agora no “editar.html” o que vou fazer vai ser logo depois do input do tipo hidden, vou abrir dupla chaves e dentro vou passar {{ form.csrf_token() }}. Pronto.
+
+[10:00] E vou passar esse mesmo trecho de código que fiz no “novo.html” para garantir a segurança desse formulário também. Logo depois da tag fieldset. Vou colocar também esse token, {{ form.csrf_token() }}. Vamos ver agora se vai funcionar na nossa aplicação. Vou voltar na aplicação e tentar acessar o Super Mario Galaxy novamente. "Editar", mudar a capa do Super Mario Galaxy para Super Mario Galaxy 2 e nome também.
+
+[10:30] Vou dar "Salvar" e agora finalmente funcionou. O que falta fazermos agora é mudar o formulário de usuário. Mudamos os formulários dos itens dos jogos, mas existe mais um formulário na nossa aplicação que é o formulário de usuário para realmente autenticar o usuário. Então vamos fazer no próximo vídeo essa mudança, essa integração do formulário de usuário com o Flask WTForms. Até lá.
