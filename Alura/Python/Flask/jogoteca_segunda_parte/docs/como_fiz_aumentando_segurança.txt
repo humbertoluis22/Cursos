@@ -1,0 +1,229 @@
+Confira o andamento do seu projeto de acordo com o que foi instruído:
+
+1) Realocar todas as rotas de views.py que fazem referência ao usuário para um novo arquivo chamado views_user.py:
+
+from jogoteca import app
+from flask import render_template, request, redirect, session, flash, url_for
+from models import Usuarios
+from helpers import FormularioUsuario
+
+@app.route('/login')
+def login():
+    proxima = request.args.get('proxima')
+    form = FormularioUsuario()
+    return render_template('login.html', proxima=proxima, form=form)
+
+@app.route('/autenticar', methods=['POST',])
+def autenticar():
+    form = FormularioUsuario(request.form)
+    usuario = Usuarios.query.filter_by(nickname=form.nickname.data).first() 
+    if usuario:
+        if form.senha.data == usuario.senha:
+            session['usuario_logado'] = usuario.nickname
+            flash(usuario.nickname + ' logado com sucesso!')
+            proxima_pagina = request.form['proxima']
+            return redirect(proxima_pagina)
+    else:
+        flash('Usuário não logado.')
+        return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Logout efetuado com sucesso!')
+    return redirect(url_for('index'))Copiar código
+2) Refatorar o nome de views.py para views_game.py e excluir os imports desnecessários:
+
+from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
+from jogoteca import app, db
+from models import Jogos
+from helpers import recupera_imagem, deleta_arquivo, FormularioJogo
+import time
+
+@app.route('/')
+def index():
+    lista = Jogos.query.order_by(Jogos.id)
+    return render_template('lista.html', titulo='Jogos', jogos=lista)
+
+@app.route('/novo')
+def novo():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormularioJogo()
+    return render_template('novo.html', titulo='Novo Jogo', form=form)
+
+@app.route('/criar', methods=['POST',])
+def criar():
+    form = FormularioJogo(request.form)
+
+    if not form.validate_on_submit():
+        return redirect(url_for('novo'))
+
+    nome = form.nome.data
+    categoria = form.categoria.data
+    console = form.console.data
+
+    jogo = Jogos.query.filter_by(nome=nome).first()
+
+    if jogo:
+        flash('Jogo já existente!')
+        return redirect(url_for('index'))
+
+    novo_jogo = Jogos(nome=nome, categoria=categoria, console=console)
+    db.session.add(novo_jogo)
+    db.session.commit()
+
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    timestamp = time.time()
+    arquivo.save(f'{upload_path}/capa{novo_jogo.id}-{timestamp}.jpg')
+
+    return redirect(url_for('index'))
+
+@app.route('/editar/<int:id>')
+def editar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
+    jogo = Jogos.query.filter_by(id=id).first()
+    form = FormularioJogo()
+    form.nome.data = jogo.nome
+    form.categoria.data = jogo.categoria
+    form.console.data = jogo.console
+    capa_jogo = recupera_imagem(id)
+    return render_template('editar.html', titulo='Editando Jogo', id=id, capa_jogo=capa_jogo, form=form)
+
+@app.route('/atualizar', methods=['POST',])
+def atualizar():
+    form = FormularioJogo(request.form)
+
+    if form.validate_on_submit():
+        jogo = Jogos.query.filter_by(id=request.form['id']).first()
+        jogo.nome = form.nome.data
+        jogo.categoria = form.categoria.data
+        jogo.console = form.console.data
+
+        db.session.add(jogo)
+        db.session.commit()
+
+        arquivo = request.files['arquivo']
+        upload_path = app.config['UPLOAD_PATH']
+        timestamp = time.time()
+        deleta_arquivo(id)
+        arquivo.save(f'{upload_path}/capa{jogo.id}-{timestamp}.jpg')
+
+    return redirect(url_for('index'))
+
+@app.route('/deletar/<int:id>')
+def deletar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login'))
+
+    Jogos.query.filter_by(id=id).delete()
+    db.session.commit()
+    flash('Jogo deletado com sucesso!')
+
+    return redirect(url_for('index'))
+
+@app.route('/uploads/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads', nome_arquivo)Copiar código
+3) Refazer os imports de views_user.py e views_game.py em jogoteca.py:
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
+
+app = Flask(__name__)
+app.config.from_pyfile('config.py')
+
+db = SQLAlchemy(app)
+csrf = CSRFProtect(app)
+
+from views_game import *
+from views_user import *
+
+if __name__ == '__main__':
+    app.run(debug=True)Copiar código
+4) Adicionar a class formularioJogo na tag form dos arquivos novo.html e editar.html:
+
+<form class="formularioJogo" action="{{ url_for('criar') }}" method="post" enctype="multipart/form-data">Copiar código
+5) Adicionar a class formularioImagem na tag figure dos arquivos novo.html e editar.html:
+
+<figure class="img thumbnail col-md-4 formularioImagem">Copiar código
+6) Adicionar a class inputBox nas tags div dos itens nos arquivos novo.html e editar.html:
+
+<div class="form-group inputBox">Copiar código
+7) Adicionar a class buttons na tag div dos botões nos arquivos novo.html e editar.html:
+
+<div class="form-group buttons">Copiar código
+8) Adicionar um novo stylesheet para app.css no arquivo login.html:
+
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">Copiar código
+9) Adicionar a class form-group nas tags div dos itens do formulário e buttons na div dos botões, no arquivo login.html:
+
+…..
+
+<form method="POST" action="{{ url_for('autenticar') }}">
+            <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
+            {{ form.csrf_token() }}
+            <div class="form-group">
+                {{ form.nickname.label(class="form-label") }}
+                {{ form.nickname(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.senha.label(class="form-label") }}
+                {{ form.senha(class="form-control") }}
+            </div>
+            <div class="form-group buttons">
+                {{ form.login(class="btn btn-primary") }}
+                <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>Copiar código
+10) Instalar o Flask BCrypt com o pip:
+
+pip install flask-bcrypt==0.7.1Copiar código
+11) Importar a função generate_password_hash do Flask BCrypt no arquivo prepara_banco.py.
+
+from flask_bcrypt import generate_password_hashCopiar código
+12) Alterar a forma como os usuários têm suas senhas geradas no banco de dados no arquivo prepara_banco.py para utilizar a função generate_password_hash.
+
+usuario_sql = 'INSERT INTO usuarios (nome, nickname, senha) VALUES (%s, %s, %s)'
+usuarios = [
+      ("Bruno Divino", "BD", generate_password_hash("alohomora").decode('utf-8')),
+      ("Camila Ferreira", "Mila", generate_password_hash("paozinho").decode('utf-8')),
+      ("Guilherme Louro", "Cake", generate_password_hash("python_eh_vida").decode('utf-8'))
+]
+cursor.executemany(usuario_sql, usuarios)
+Copiar código
+13) Instalar a biblioteca Werkzeug na versão 2.0.0:
+
+pip install werkzeug==2.0.0Copiar código
+14) Rodar o script prepara_banco.py novamente;
+
+15) Importar a função Bcrypt dentro de jogoteca.py:
+
+from flask_bcrypt import BcryptCopiar código
+16) Instanciar o Bcrypt na aplicação dentro de jogoteca.py:
+
+bcrypt = Bcrypt(app)Copiar código
+17) Importar a função check_password_hash no arquivo views_user.py:
+
+from flask_bcrypt import check_password_hashCopiar código
+18) Alterar a rota autenticar em views_user.py para fazer a checagem da senha com a função check_password_hash:
+
+@app.route('/autenticar', methods=['POST',])
+def autenticar():
+    form = FormularioUsuario(request.form)
+    usuario = Usuarios.query.filter_by(nickname=form.nickname.data).first()
+    senha = check_password_hash(usuario.senha, form.senha.data)
+    if usuario and senha:
+        session['usuario_logado'] = usuario.nickname
+        flash(usuario.nickname + ' logado com sucesso!')
+        proxima_pagina = request.form['proxima']
+        return redirect(proxima_pagina)
+    else:
+        flash('Usuário não logado.')
+        return redirect(url_for('login'))

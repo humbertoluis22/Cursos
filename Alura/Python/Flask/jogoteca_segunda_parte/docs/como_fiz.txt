@@ -1,0 +1,225 @@
+Confira o andamento do seu projeto de acordo com o que foi instruído:
+
+1) Alterar o código de lista.html para incluir botões para as rotas de novo, logout e novo:
+
+{% extends "template.html" %}
+{% block conteudo %}
+
+        <a class="btn btn-primary" href="{{ url_for('login') }}">Login</a>
+        <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+        <a class="btn btn-primary" href="{{ url_for('novo') }}">Novo Jogo</a>
+
+        <table class="table table-striped table-responsive table-bordered">
+…….Copiar código
+2) Fazer o download do Flask WTF através do pip no terminal/prompt da aplicação:
+
+pip install flask-wtf==1.0.0Copiar código
+3) Fazer o import do CSRFProtect no arquivo jogoteca.py para garantir a proteção dos formulários da aplicação:
+
+from flask_wtf.csrf import CSRFProtectCopiar código
+4) Instanciar a proteção contra CSRF no arquivo jogoteca.py:
+
+app = Flask(__name__)
+app.config.from_pyfile('config.py')
+
+db = SQLAlchemy(app)
+csrf = CSRFProtect(app)
+
+from views import *
+
+if __name__ == '__main__':
+    app.run(debug=True)
+Copiar código
+5) Fazer o import do FlaskForm e demais bibliotecas necessárias do wtforms:
+
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, PasswordField, validatorsCopiar código
+6) Criar duas novas classes dentro do arquivo helpers.py que irão representar os formulários de novo.html, editar.html e login.html
+
+…….
+
+class FormularioJogo(FlaskForm):
+    nome = StringField('Nome do Jogo', [validators.DataRequired(), validators.Length(min=1, max=50)])
+    categoria = StringField('Categoria', [validators.DataRequired(), validators.Length(min=1, max=40)])
+    console = StringField('Console', [validators.DataRequired(), validators.Length(min=1, max=20)])
+    salvar = SubmitField('Salvar')
+
+class FormularioUsuario(FlaskForm):
+    nickname = StringField('Nickname', [validators.DataRequired(), validators.Length(min=1, max=8)])
+    senha = PasswordField('Senha', [validators.DataRequired(), validators.Length(min=1, max=100)])
+    login = SubmitField('Login')
+
+…….Copiar código
+7) Fazer o import de FormularioJogoe FormularioUsuario em views.py:
+
+from helpers import recupera_imagem, deleta_arquivo, FormularioJogo, FormularioUsuarioCopiar código
+8) Atualizar a rota de novo do arquivo views.py para instanciar o formulário e passar o objeto form através do render_template:
+
+@app.route('/novo')
+def novo():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormularioJogo()
+    return render_template('novo.html', titulo='Novo Jogo', form=form)Copiar código
+9) Apagar as tags de input e label de novo.html e substituí-las pela nomenclatura de formulário nativa do Flask WTF, assim como inserir o token CSRF:
+
+…..
+
+        <fieldset>
+          {{ form.csrf_token() }}
+          <div class="form-group">
+            {{ form.nome.label(class="form-label") }}
+            {{ form.nome(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.categoria.label(class="form-label") }}
+            {{ form.categoria(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.console.label(class="form-label") }}
+            {{ form.console(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.salvar(class="btn btn-primary") }}
+            <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
+          </div>
+        </fieldset>
+      </form>
+{% endblock %}Copiar código
+10) Alterar a rota criar do arquivo views.py para receber os valores do novo formulário integrado com o Flask WTF:
+
+@app.route('/criar', methods=['POST',])
+def criar():
+    form = FormularioJogo(request.form)
+
+    if not form.validate_on_submit():
+        return redirect(url_for('novo'))
+
+    nome = form.nome.data
+    categoria = form.categoria.data
+    console = form.console.data
+
+    jogo = Jogos.query.filter_by(nome=nome).first()
+
+    if jogo:
+        flash('Jogo já existente!')
+        return redirect(url_for('index'))
+
+    novo_jogo = Jogos(nome=nome, categoria=categoria, console=console)
+    db.session.add(novo_jogo)
+    db.session.commit()
+
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    timestamp = time.time()
+    arquivo.save(f'{upload_path}/capa{novo_jogo.id}-{timestamp}.jpg')
+
+    return redirect(url_for('index'))Copiar código
+11) Atualizar a rota de editar do arquivo views.py para instanciar o formulário, atribuir os valores aos inputs e passar o objeto form através do render_template:
+
+@app.route('/editar/<int:id>')
+def editar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
+    jogo = Jogos.query.filter_by(id=id).first()
+    form = FormularioJogo()
+    form.nome.data = jogo.nome
+    form.categoria.data = jogo.categoria
+    form.console.data = jogo.console
+    capa_jogo = recupera_imagem(id)
+    return render_template('editar.html', titulo='Editando Jogo', id=id, capa_jogo=capa_jogo, form=form)Copiar código
+12) Apagar as tags de input e label de editar.html e substituí-las pela nomenclatura de formulário nativa do Flask WTF, assim como inserir o token CSRF:
+
+…….
+
+<fieldset>
+          <input type="hidden" name="id" value="{{ id }}">
+          {{ form.csrf_token() }}
+          <div class="form-group">
+            {{ form.nome.label(class="form-label") }}
+            {{ form.nome(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.categoria.label(class="form-label") }}
+            {{ form.categoria(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.console.label(class="form-label") }}
+            {{ form.console(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.salvar(class="btn btn-primary") }}
+            <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
+          </div>
+        </fieldset>
+      </form>
+{% endblock %}Copiar código
+13) Alterar a rota atualizar do arquivo views.py para receber os valores do novo formulário integrado com o Flask WTF:
+
+@app.route('/atualizar', methods=['POST',])
+def atualizar():
+    form = FormularioJogo(request.form)
+
+    if form.validate_on_submit():
+        jogo = Jogos.query.filter_by(id=request.form['id']).first()
+        jogo.nome = form.nome.data
+        jogo.categoria = form.categoria.data
+        jogo.console = form.console.data
+
+        db.session.add(jogo)
+        db.session.commit()
+
+        arquivo = request.files['arquivo']
+        upload_path = app.config['UPLOAD_PATH']
+        timestamp = time.time()
+        deleta_arquivo(id)
+        arquivo.save(f'{upload_path}/capa{jogo.id}-{timestamp}.jpg')
+
+    return redirect(url_for('index'))Copiar código
+14) Atualizar a rota de login do arquivo views.py para instanciar o formulário e passar o objeto form através do render_template:
+
+@app.route('/login')
+def login():
+    proxima = request.args.get('proxima')
+    form = FormularioUsuario()
+    return render_template('login.html', proxima=proxima, form=form)Copiar código
+15) Apagar as tags de input e label de login.html e substituí-las pela nomenclatura de formulário nativa do Flask WTF, assim como inserir o token CSRF:
+
+……
+
+<h1>Faça seu login</h1>
+        <form method="POST" action="{{ url_for('autenticar') }}">
+            <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
+            {{ form.csrf_token() }}
+            <div class="form-group">
+                {{ form.nickname.label(class="form-label") }}
+                {{ form.nickname(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.senha.label(class="form-label") }}
+                {{ form.senha(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.login(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
+    </div>
+</body>
+</html>Copiar código
+16) Alterar a rota autenticar do arquivo views.py para receber os valores do novo formulário integrado com o Flask WTF:
+
+@app.route('/autenticar', methods=['POST',])
+def autenticar():
+    form = FormularioUsuario(request.form)
+    usuario = Usuarios.query.filter_by(nickname=form.nickname.data).first()
+    if usuario:
+        if form.senha.data == usuario.senha:
+            session['usuario_logado'] = usuario.nickname
+            flash(usuario.nickname + ' logado com sucesso!')
+            proxima_pagina = request.form['proxima']
+            return redirect(proxima_pagina)
+    else:
+        flash('Usuário não logado.')
+        return redirect(url_for('login'))Copiar código
+
