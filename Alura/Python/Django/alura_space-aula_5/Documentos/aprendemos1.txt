@@ -1,0 +1,43 @@
+Vimos que cada modelo é uma classe Python que geralmente é mapeada para ser uma tabela no banco de dados.
+
+Caso queira saber mais sobre Models do Django, acesse o que diz a documentação oficial do Django sobre Models.
+
+
+
+Confira o andamento do seu projeto de acordo com o que foi instruído:
+
+Primeiro, acesse o arquivo models.py dentro do diretório da app galeria e adicione a primeira model, conforme o código abaixo. Essa model será uma representação de uma tabela chamada Fotografia no banco de dados gerenciado pelo SQLite.
+
+from django.db import models
+
+class Fotografia(models.Model):
+    nome = models.CharField(max_length=100, null=False, blank=False)
+    legenda = models.CharField(max_length=150, null=False, blank=False)
+    descricao = models.TextField(null=False, blank=False)
+    foto = models.CharField(max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return f”Fotografia [nome={self.nome}]”Copiar código
+Agora é necessário criar uma nova migration. Isto é, comunicar ao ORM Django que precisamos fazer uma alteração no banco de dados.Para isso, utilize o seguinte comando no terminal:
+
+python manage.py makemigrationsCopiar código
+O último comando irá criar um novo arquivo dentro do diretório migrations no app galeria. Esse arquivo irá conter uma “receita de bolo” do que deve ser modificado no banco de dados. Para isso, utilize o seguinte comando no terminal:
+
+python manage.py migrateCopiar código
+Esse último comando irá realizar a alteração no banco de dados.
+
+Pronto! Agora você já tem um banco de dados integrado com o seu site!
+
+
+
+
+
+
+
+
+
+Nesta aula:
+Aprendemos a dinamizar os nomes das imagens do site;
+Entendemos que é importante utilizar um banco de dados como o SQLite em um projeto de software para substituir estruturas de dados como dicionários e listas;
+Desenvolvemos a primeira model do projeto, criando a primeira tabela no banco de dados;
+Conhecemos o ORM Django, utilizado para a comunicação com diferentes bancos de dados.

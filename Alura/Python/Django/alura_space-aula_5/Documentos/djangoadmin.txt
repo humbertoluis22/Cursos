@@ -1,0 +1,3 @@
+Uma das partes mais poderosas do Django é sua interface de admin.
+
+Se você quiser saber mais sobre o Django admin, confira a documentação do Django.

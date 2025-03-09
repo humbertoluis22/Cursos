@@ -1,0 +1,15 @@
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\bin\Debug\net8.0\SecaoQuatroProduto.exe
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\bin\Debug\net8.0\SecaoQuatroProduto.deps.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\bin\Debug\net8.0\SecaoQuatroProduto.runtimeconfig.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\bin\Debug\net8.0\SecaoQuatroProduto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\bin\Debug\net8.0\SecaoQuatroProduto.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.AssemblyInfoInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.AssemblyInfo.cs
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.csproj.CoreCompileInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.sourcelink.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\refint\SecaoQuatroProduto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\SecaoQuatroProduto.genruntimeconfig.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroProduto\SecaoQuatroProduto\obj\Debug\net8.0\ref\SecaoQuatroProduto.dll

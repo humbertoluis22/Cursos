@@ -1,0 +1,15 @@
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\bin\Debug\net8.0\SecaoQuatroFuncionario.exe
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\bin\Debug\net8.0\SecaoQuatroFuncionario.deps.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\bin\Debug\net8.0\SecaoQuatroFuncionario.runtimeconfig.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\bin\Debug\net8.0\SecaoQuatroFuncionario.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\bin\Debug\net8.0\SecaoQuatroFuncionario.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.AssemblyInfoInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.AssemblyInfo.cs
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.csproj.CoreCompileInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.sourcelink.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\refint\SecaoQuatroFuncionario.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\SecaoQuatroFuncionario.genruntimeconfig.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoQuatroFuncionario\SecaoQuatroFuncionario\obj\Debug\net8.0\ref\SecaoQuatroFuncionario.dll

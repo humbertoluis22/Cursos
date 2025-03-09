@@ -1,0 +1,15 @@
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\bin\Debug\net8.0\BaseExercicio.exe
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\bin\Debug\net8.0\BaseExercicio.deps.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\bin\Debug\net8.0\BaseExercicio.runtimeconfig.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\bin\Debug\net8.0\BaseExercicio.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\bin\Debug\net8.0\BaseExercicio.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.AssemblyInfoInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.AssemblyInfo.cs
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.csproj.CoreCompileInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.sourcelink.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\refint\BaseExercicio.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\BaseExercicio.genruntimeconfig.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\BaseExercicio\BaseExercicio\obj\Debug\net8.0\ref\BaseExercicio.dll

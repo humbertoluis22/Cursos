@@ -1,0 +1,15 @@
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\bin\Debug\net8.0\SecaoCincoProduto.exe
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\bin\Debug\net8.0\SecaoCincoProduto.deps.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\bin\Debug\net8.0\SecaoCincoProduto.runtimeconfig.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\bin\Debug\net8.0\SecaoCincoProduto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\bin\Debug\net8.0\SecaoCincoProduto.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.AssemblyInfoInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.AssemblyInfo.cs
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.csproj.CoreCompileInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.sourcelink.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\refint\SecaoCincoProduto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\SecaoCincoProduto.genruntimeconfig.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharpe_poo\SecaoCincoProduto\SecaoCincoProduto\obj\Debug\net8.0\ref\SecaoCincoProduto.dll

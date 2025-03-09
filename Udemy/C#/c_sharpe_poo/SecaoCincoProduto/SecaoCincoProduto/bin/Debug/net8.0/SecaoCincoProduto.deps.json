@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SecaoCincoProduto/1.0.0": {
+        "runtime": {
+          "SecaoCincoProduto.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SecaoCincoProduto/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

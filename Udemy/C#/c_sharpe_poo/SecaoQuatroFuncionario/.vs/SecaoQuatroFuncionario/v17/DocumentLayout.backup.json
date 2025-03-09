@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Humberto\\Desktop\\Cursos\\Udemy\\C#\\c_sharpe_poo\\SecaoQuatroFuncionario\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{65DB2F39-4819-4B75-B90C-44F76D51BB79}|SecaoQuatroFuncionario\\SecaoQuatroFuncionario.csproj|c:\\users\\humberto\\desktop\\cursos\\udemy\\c#\\c_sharpe_poo\\secaoquatrofuncionario\\secaoquatrofuncionario\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DB2F39-4819-4B75-B90C-44F76D51BB79}|SecaoQuatroFuncionario\\SecaoQuatroFuncionario.csproj|solutionrelative:secaoquatrofuncionario\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DB2F39-4819-4B75-B90C-44F76D51BB79}|SecaoQuatroFuncionario\\SecaoQuatroFuncionario.csproj|c:\\users\\humberto\\desktop\\cursos\\udemy\\c#\\c_sharpe_poo\\secaoquatrofuncionario\\secaoquatrofuncionario\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DB2F39-4819-4B75-B90C-44F76D51BB79}|SecaoQuatroFuncionario\\SecaoQuatroFuncionario.csproj|solutionrelative:secaoquatrofuncionario\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Funcionario.cs",
+              "DocumentMoniker": "C:\\Users\\Humberto\\Desktop\\Cursos\\Udemy\\C#\\c_sharpe_poo\\SecaoQuatroFuncionario\\SecaoQuatroFuncionario\\Funcionario.cs",
+              "RelativeDocumentMoniker": "SecaoQuatroFuncionario\\Funcionario.cs",
+              "ToolTip": "C:\\Users\\Humberto\\Desktop\\Cursos\\Udemy\\C#\\c_sharpe_poo\\SecaoQuatroFuncionario\\SecaoQuatroFuncionario\\Funcionario.cs*",
+              "RelativeToolTip": "SecaoQuatroFuncionario\\Funcionario.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T18:23:23.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Humberto\\Desktop\\Cursos\\Udemy\\C#\\c_sharpe_poo\\SecaoQuatroFuncionario\\SecaoQuatroFuncionario\\Program.cs",
+              "RelativeDocumentMoniker": "SecaoQuatroFuncionario\\Program.cs",
+              "ToolTip": "C:\\Users\\Humberto\\Desktop\\Cursos\\Udemy\\C#\\c_sharpe_poo\\SecaoQuatroFuncionario\\SecaoQuatroFuncionario\\Program.cs*",
+              "RelativeToolTip": "SecaoQuatroFuncionario\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T18:22:04.831Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

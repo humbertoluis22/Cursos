@@ -1,0 +1,103 @@
+Já criamos o banco de dados e as migrations, agora precisamos incluir um item nele. Usaremos novamente a extensão para visualizarmos o que está dentro do banco de dados no arquivo "galeria_fotografia".
+
+Banco de dados "galeria_fotografia"
+
+id	nome	legenda	descricao	foto
+Observe que os campos estão vazios. Para adicionarmos um item, abriremos o terminal e rodaremos python manage.py shell.
+
+python manage.py shellCopiar código
+No retorno, ele abrirá uma shell interativa do Django:
+
+Python 3.10.6 (tags/v3.10.6:9c7b4db, Aug 1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)] on win 32
+
+Type "help", "copyright", "credits" or "license" for more information.
+
+(InteractiveConsole)
+
+Isso nos possibilita puxar o model que criamos, localizado na pasta "galeria > models.py". No terminal, executaremos o comando from galeria.models import Fotografia, para importarmos "Fotografia".
+
+from galeria.models import FotografiaCopiar código
+Após importar, desejamos criar um dado. Para tal, criaremos um item com foto = Fotografia() e dentro do parêntese colocamos os nomes dos dados criados (nome, legenda, descrição e foto) com seus respectivos valores (passando as informações que inserimos no arquivo views.py para o banco de dados).
+
+foto = Fotografia(nome="Nebulosa de Carina", legenda="webbtelescope.org / NASA / James Webb", foto="carina-nebula.png")Copiar código
+A foto "carina-nebula.png" está localizada em "static > assets > imagens > galeria". Ao selecionarmos "Enter" criamos o item, mas precisamos salvá-lo ainda usando foto.save().
+
+foto.save()Copiar código
+Assim, salvamos mais um item no banco de dados. Podemos verificar isso pelo terminal, rodando Fotografia.objects.all() para exibir os objetos criados no model de Fotografia.
+
+Fotografia.objects.all()Copiar código
+<QuerySet[<Fotografia: Fotografia [nome=Nebulosa de Carina]>]>
+
+Retornou o objeto "nome" criado. Lembra da boa prática que aplicamos anteriormente quando criamos o model? Voltando ao arquivo "models.py", temos:
+
+models.py:
+
+//código omitido
+
+    def __str__(self):
+        return f"Fotografia [nome={self.nome}]"Copiar código
+Criamos um método que retorna o nome do item criado. Isso é algo que conseguimos visualizar pelo terminal, porque quando puxamos no comando para exibir os objetos, ele capturou o nome "Nebulosa de Carina".
+
+Se quisermos visualizar o item completo, basta irmos no return do método e incluir mais itens, como legenda, descrição e foto. No caso, queremos somente uma indicação do item que estamos visualizando e colocamos somente o nome. Já temos o novo item!
+
+Agora, vamos clicar com o botão direito no arquivo "db.sqlite3" e escolher a opção para visualizarmos com o SQLite Viewer. Logo após, clicamos no arquivo "galeria_fotografia", nele teremos:
+
+id	nome	legenda	descricao	foto
+1	Nebulosa de Carina	webbtelescope.org		carina-nebula.png
+Ficou faltando a descrição, que vamos inserir mais adiante. Para finalizar esse vídeo, podemos aplicar outra boa prática. No arquivo "settings.py" (dentro do pacote "setup"), temos o installed apps com a galeria.
+
+settings.py:
+
+// código omitido
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'galeria',
+]
+
+//código omitidoCopiar código
+Inserimos a galeria como uma nova aplicação no curso anterior. Porém, há uma pasta nomeada "apps.py" no diretório de "galeria". Essa pasta é destinada aos arquivos de configurações específicas da aplicação "galeria".
+
+apps.py:
+
+from django.apps import AppConfig
+
+
+class GaleriaConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'galeria'Copiar código
+É interessante referenciarmos essa pasta quando chamamos a galeria no arquivo "settings.py". Pegamos a referência da pasta apps.py e referenciá-la no installed apps. Para tal, no lugar de apenas "galeria" escrevemos 'galeria.apps.GaleriaConfig'.
+
+settings.py:
+
+//código omitido
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'galeria.apps.GaleriaConfig',
+]
+
+//código omitidoCopiar código
+Chamando a galeria dessa forma, ele não vai puxar somente o aplicativo, e sim todos os arquivos com as configurações. Se realizarmos alguma alteração na aplicação, ele atualiza e puxa essa modificação.
+
+O arquivo apps.py foi criado pelo próprio Django no momento que instanciamos a aplicação "galeria". Após isso, vamos testar a aplicação!
+
+Acessando pelo navegador o endereço 127.0.0.1:8000, observe que nada foi modificado. Isso é esperado, porque a forma que aplicamos no arquivo "views.py" é a mesma que usamos, utlizando "dados". Se analisarmos no arquivo "index.html" também não alteramos nada.
+
+Portanto, inserimos um banco de dados, colocamos itens dentro dele. Porém, a nossa aplicação ainda não está acessando o banco de dados. Na sequência, acessaremos os dados do banco de dados para pararmos de usar a estrutura de dicionário para armazenarmos esses dados.
+
+Até a próxima aula!

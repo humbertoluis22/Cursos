@@ -1,0 +1,15 @@
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\bin\Debug\net8.0\PrimeiroProjeto.exe
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\bin\Debug\net8.0\PrimeiroProjeto.deps.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\bin\Debug\net8.0\PrimeiroProjeto.runtimeconfig.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\bin\Debug\net8.0\PrimeiroProjeto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\bin\Debug\net8.0\PrimeiroProjeto.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.AssemblyInfoInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.AssemblyInfo.cs
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.csproj.CoreCompileInputs.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.sourcelink.json
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\refint\PrimeiroProjeto.dll
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.pdb
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\PrimeiroProjeto.genruntimeconfig.cache
+C:\Users\Humberto\Desktop\Cursos\Udemy\C#\c_sharp_logica_e_algoritmos\PrimeiroProjeto\PrimeiroProjeto\obj\Debug\net8.0\ref\PrimeiroProjeto.dll
