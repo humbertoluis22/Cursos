@@ -6,6 +6,7 @@ using System.Linq;
 
 
 
+
 namespace MyApp
 {
     internal class Program
@@ -13,19 +14,41 @@ namespace MyApp
 
         static void Main(string[] args)
         {
-            string[] valores = Console.ReadLine().Split(' ');
+            string input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return;
+            }
+            string[] horaMinuto = input.Split(' ');
 
-            int valor1 = int.Parse(valores[0]);
-            int valor2 = int.Parse(valores[1]);
-        
-            if (valor2 % valor1 == 0 || valor1 % valor2 == 0)
+            if(horaMinuto.Length < 4)
             {
-                Console.WriteLine("Sao Multiplos");
+                return ;
             }
-            else
+            
+            if(
+            int.TryParse(horaMinuto[0],out int primeiraHora) && 
+            int.TryParse(horaMinuto[1], out  int primeiroMinuto)&&
+            int.TryParse(horaMinuto[2], out int segundaHora)&&
+            int.TryParse(horaMinuto[3],out int segundoMinuto)
+            )
             {
-                Console.WriteLine("Nao sao Multiplos");
+
+                int inicio_total = (primeiraHora * 60) + primeiroMinuto;
+                int final_total = (segundaHora * 60) + segundoMinuto;
+
+                int duracao_min = (final_total - inicio_total + 1440) % 1440;
+                if (duracao_min == 0)
+                {
+                    Console.WriteLine("O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)");
+                    return ;
+                }
+
+                int hora = duracao_min / 60;
+                int minuto = duracao_min % 60;
+                Console.WriteLine($"O JOGO DUROU {hora} HORA(S) E {minuto} MINUTO(S)");
             }
+
         }
     }
 }

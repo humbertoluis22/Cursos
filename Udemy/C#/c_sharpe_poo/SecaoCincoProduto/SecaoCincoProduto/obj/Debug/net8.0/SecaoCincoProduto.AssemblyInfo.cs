@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SecaoCincoProduto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce90c7856a0978db755205f122f2c3a3faaa37c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a1ecf15829bbba79258780620777443fa245c0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SecaoCincoProduto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SecaoCincoProduto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
