@@ -10,6 +10,8 @@ namespace Core.Entity
     {
         public string Nome { get; set; }
         public DateTime? DataNascimento { get; set; }
-        public ICollection<Pedido> Pedidos { get; set; }
+
+        public required string CPF{ get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

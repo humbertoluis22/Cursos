@@ -10,10 +10,11 @@ namespace Infrastructure.Configuration
         {
             builder.ToTable("Cliente");
             builder.HasKey(u => u.Id);
-            builder.Property(u => u.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
+            builder.Property(u => u.Id).HasColumnType("INT").UseIdentityColumn();
             builder.Property(u => u.DataCriacao).HasColumnType("DATETIME").IsRequired();
             builder.Property(u => u.Nome).HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(u => u.DataNascimento).HasColumnType("DATETIME");
+            builder.Property(u => u.CPF).HasColumnType("VARCHAR(11)").IsRequired();
         }
     }
 }

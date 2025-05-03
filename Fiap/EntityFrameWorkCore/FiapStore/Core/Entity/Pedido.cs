@@ -11,7 +11,7 @@ namespace Core.Entity
         public int ClienteId { get; set; }
         public int LivroId { get; set; }
 
-        public Cliente Cliente { get; set; }
-        public Livro Livro { get; set; }
+        public virtual Cliente Cliente { get; set; }
+        public virtual Livro Livro { get; set; }
     }
 }

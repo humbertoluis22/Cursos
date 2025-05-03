@@ -6,11 +6,10 @@ namespace Infrastructure.Repository
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly IConfiguration _configuration;
-
-        public ApplicationDbContext(IConfiguration configuration)
+        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            _configuration = configuration;
+
         }
 
         public DbSet<Cliente> Cliente { get; set; }
@@ -18,11 +17,7 @@ namespace Infrastructure.Repository
         public DbSet<Pedido> Pedido { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:ConnectionString"));
-        }
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
